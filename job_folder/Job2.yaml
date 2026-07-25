@@ -1,0 +1,25 @@
+resources:
+  jobs:
+    Job2:
+      name: Job2
+      tasks:
+        - task_key: task1
+          notebook_task:
+            notebook_path: /Workspace/Users/balagisai92@gmail.com/Databricks-ML-end-to-end-flow/nb3_pipeline
+            base_parameters:
+              env: QA
+              num1: "345"
+              num2: "678"
+              param_text: fg
+            source: WORKSPACE
+        - task_key: task2
+          depends_on:
+            - task_key: task1
+          notebook_task:
+            notebook_path: /Workspace/Users/balagisai92@gmail.com/Databricks-ML-end-to-end-flow/nb4_pipeline
+            base_parameters:
+              Result: "{{tasks.task1.values.addition_result}}"
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED

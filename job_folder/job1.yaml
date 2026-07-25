@@ -1,0 +1,18 @@
+resources:
+  jobs:
+    job1:
+      name: job1
+      tasks:
+        - task_key: task1
+          notebook_task:
+            notebook_path: /Workspace/Users/balagisai92@gmail.com/Databricks-ML-end-to-end-flow/nb1_pipeline
+            source: WORKSPACE
+        - task_key: task2
+          depends_on:
+            - task_key: task1
+          notebook_task:
+            notebook_path: /Workspace/Users/balagisai92@gmail.com/Databricks-ML-end-to-end-flow/nb2_pipeline
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
